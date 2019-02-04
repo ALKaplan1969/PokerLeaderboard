@@ -1,1 +1,1 @@
-{"Median":232.00,"Mean":232.00,"Players":[{"Id":1,"Name":"sdf","Winnings":232.0,"IsMedian":true,"IsMean":true}]}
+{"Median":0.0,"Mean":0.0,"Players":[]}

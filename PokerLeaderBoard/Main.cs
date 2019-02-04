@@ -14,11 +14,11 @@ using Infrastructure.Models;
 
 namespace PokerLeaderBoard
 {
-    public partial class Form1 : Form
+    public partial class Main : Form
     {
         private BindingSource playersBindingSource = new BindingSource();
 
-        public Form1()
+        public Main()
         {
             InitializeComponent();
             InitializeDataGrid();
