@@ -18,8 +18,6 @@ namespace PokerLeaderBoard.Providers
 
         LeaderBoard DeletePlayer(Player player, List<Player> playerList);
 
-        DataSet GetPlayers();
-
         void SaveLeaderBoard(LeaderBoard leaderBoard);
     }
 }

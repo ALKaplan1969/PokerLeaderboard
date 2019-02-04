@@ -17,7 +17,6 @@ namespace Infrastructure.DataAccess
 
         public LeaderBoard AddPlayer(Player player, List<Player> playerList)
         {
-            //LeaderBoard leaderBoard = GetLeaderBoard();
             var leaderBoard = new LeaderBoard();
             leaderBoard.Players = playerList == null ? new List<Player>() : playerList;
 
@@ -65,8 +64,8 @@ namespace Infrastructure.DataAccess
                 Players = leaderBoard.Players
             };
 
-            //If only player.count = 0 do not call
-            //If only player.count = 1, then set those values automatically
+            //If player.count = 0 do not call
+            //If player.count = 1, then set those values automatically
             if (lb.Players.Count != 0 && lb.Players.Count == 1)
             {
                 lb.Players[0].IsMean = true;
@@ -75,8 +74,8 @@ namespace Infrastructure.DataAccess
             else if (lb.Players.Count > 1)
             {
                 var playersWinnings = lb.Players.Select(x => x.Winnings).ToList();
-                var closestMean = Calculate.GetClosesValue(playersWinnings, mean);
-                var closestMedian = Calculate.GetClosesValue(playersWinnings, median);
+                var closestMean = Calculate.GetClosestValue(playersWinnings, mean);
+                var closestMedian = Calculate.GetClosestValue(playersWinnings, median);
                 var meanResults = lb.Players.Where(x => x.Winnings == closestMean).ToList();
 
                 lb.Players.ForEach(y => y.IsMean = false);
@@ -98,7 +97,6 @@ namespace Infrastructure.DataAccess
             using (StreamWriter file = File.CreateText(filePath))
             {
                 JsonSerializer serializer = new JsonSerializer();
-                //serialize object directly into file stream
                 serializer.Serialize(file, leaderBoard);
             }
         }

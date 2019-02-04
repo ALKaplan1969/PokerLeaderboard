@@ -39,7 +39,7 @@ namespace Infrastructure
                 .Select(g => g.Key).FirstOrDefault();
         }
 
-        public static decimal GetClosesValue(List<decimal> values, decimal targetNumber)
+        public static decimal GetClosestValue(List<decimal> values, decimal targetNumber)
         {
             if (values != null)
                 return values.OrderBy(x => Math.Abs((long)x - targetNumber)).First();

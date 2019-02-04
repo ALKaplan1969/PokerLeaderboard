@@ -72,14 +72,6 @@ namespace PokerLeaderBoard
             }
         }
 
-
-        public DataSet GetPlayers()
-        {
-
-
-            throw new NotImplementedException();
-        }
-
         public void SaveLeaderBoard(LeaderBoard leaderBoard)
         {
             try
