@@ -46,6 +46,7 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.lblOrigWinnings = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.btnClose = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgPlayer)).BeginInit();
             this.pnlAddPlayer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
@@ -223,7 +224,7 @@
             // lblOrigWinnings
             // 
             this.lblOrigWinnings.AutoSize = true;
-            this.lblOrigWinnings.Location = new System.Drawing.Point(106, 328);
+            this.lblOrigWinnings.Location = new System.Drawing.Point(46, 330);
             this.lblOrigWinnings.Name = "lblOrigWinnings";
             this.lblOrigWinnings.Size = new System.Drawing.Size(68, 13);
             this.lblOrigWinnings.TabIndex = 16;
@@ -234,11 +235,23 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // btnClose
+            // 
+            this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClose.Location = new System.Drawing.Point(662, 500);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(108, 44);
+            this.btnClose.TabIndex = 17;
+            this.btnClose.Text = "Close";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 556);
+            this.Controls.Add(this.btnClose);
             this.Controls.Add(this.lblOrigWinnings);
             this.Controls.Add(this.pnlAddPlayer);
             this.Controls.Add(this.label5);
@@ -282,6 +295,7 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Label lblOrigWinnings;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.Button btnClose;
     }
 }
 

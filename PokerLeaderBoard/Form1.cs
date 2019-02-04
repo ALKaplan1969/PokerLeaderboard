@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Infrastructure;
@@ -104,8 +105,8 @@ namespace PokerLeaderBoard
                 decimal.TryParse(txtWinnings.Text, out winnings);
                 LeaderBoard leaderBoard = leaderBoardProvider.AddPlayer(txtPlayerName.Text, winnings, playerList);
 
-                lblMedian.Text = string.Format("{0:C}", leaderBoard.Median);    //    leaderBoard.Median.ToString("0.00");
-                lblMean.Text = string.Format("{0:C}", leaderBoard.Mean);    //leaderBoard.Mean.ToString("0.00");
+                lblMedian.Text = string.Format("{0:C}", leaderBoard.Median);    
+                lblMean.Text = string.Format("{0:C}", leaderBoard.Mean);    
 
                 playersBindingSource = new BindingSource();
                 playersBindingSource.DataSource = leaderBoard.Players;
@@ -130,8 +131,8 @@ namespace PokerLeaderBoard
             var leaderBoardProvider = new LeaderBoardProvider();
             var leaderBoard = leaderBoardProvider.GetLeaderBoard();
 
-            lblMedian.Text = string.Format("{0:C}", leaderBoard.Median);  //leaderboard.Median.ToString();
-            lblMean.Text = string.Format("{0:C}", leaderBoard.Mean);  // leaderboard.Mean.ToString();
+            lblMedian.Text = string.Format("{0:C}", leaderBoard.Median);  
+            lblMean.Text = string.Format("{0:C}", leaderBoard.Mean);  
 
             if (leaderBoard.Players != null)
             {
@@ -160,14 +161,7 @@ namespace PokerLeaderBoard
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            var leaderBoard = new LeaderBoard()
-            {
-                Mean = decimal.Parse(lblMedian.Text),
-                Median = decimal.Parse(lblMedian.Text),
-                Players = (List<Player>)playersBindingSource.DataSource
-            };
-            LeaderBoardProvider leaderBoardProvider = new LeaderBoardProvider();
-            leaderBoardProvider.SaveLeaderBoard(leaderBoard);
+            SaveData();
         }
 
         private void dgPlayer_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -208,8 +202,8 @@ namespace PokerLeaderBoard
                         List<Player> playerList = (List<Player>)playersBindingSource.DataSource;
 
                         var leaderBoard = leaderBoardProvider.UpdatePlayer(player, playerList);
-                        lblMedian.Text = leaderBoard.Median.ToString("0.00");
-                        lblMean.Text = leaderBoard.Mean.ToString("0.00");
+                        lblMedian.Text = string.Format("{0:C}", leaderBoard.Median); 
+                        lblMean.Text = string.Format("{0:C}", leaderBoard.Mean);  
 
                         playersBindingSource = new BindingSource();
                         playersBindingSource.DataSource = leaderBoard.Players;
@@ -262,8 +256,8 @@ namespace PokerLeaderBoard
                             }
                             else
                             {
-                                lblMedian.Text = leaderBoard.Median.ToString("0.00");
-                                lblMean.Text = leaderBoard.Mean.ToString("0.00");
+                                lblMedian.Text = string.Format("{0:C}", leaderBoard.Median); 
+                                lblMean.Text = string.Format("{0:C}", leaderBoard.Mean);  
                             }
                             playersBindingSource = new BindingSource();
                             playersBindingSource.DataSource = leaderBoard.Players;
@@ -319,6 +313,28 @@ namespace PokerLeaderBoard
                 txtWinnings.Select(0, txtWinnings.Text.Length);
                 errorProvider1.SetError(txtWinnings, "Not a valid winning amount");
             }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void SaveData()
+        {
+            var leaderBoard = new LeaderBoard()
+            {
+                Mean = Parse(lblMedian.Text),
+                Median = Parse(lblMedian.Text),
+                Players = (List<Player>)playersBindingSource.DataSource
+            };
+            LeaderBoardProvider leaderBoardProvider = new LeaderBoardProvider();
+            leaderBoardProvider.SaveLeaderBoard(leaderBoard);
+        }
+
+        public static decimal Parse(string input)
+        {
+            return decimal.Parse(Regex.Replace(input, @"[^\d.]", ""));
         }
     }
 }
