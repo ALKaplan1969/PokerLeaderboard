@@ -87,6 +87,7 @@
             this.dgPlayer.Size = new System.Drawing.Size(701, 150);
             this.dgPlayer.TabIndex = 2;
             this.dgPlayer.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgPlayer_CellClick);
+            this.dgPlayer.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgPlayer_DataError);
             // 
             // lblMessage
             // 

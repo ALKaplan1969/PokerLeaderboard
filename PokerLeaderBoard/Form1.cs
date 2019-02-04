@@ -336,5 +336,10 @@ namespace PokerLeaderBoard
         {
             return decimal.Parse(Regex.Replace(input, @"[^\d.]", ""));
         }
+
+        private void dgPlayer_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            MessageBox.Show(e.Exception.Message);
+        }
     }
 }
